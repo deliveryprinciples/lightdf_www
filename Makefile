@@ -13,7 +13,7 @@ LINK_TO_CONTAINER = lightdf_framework# This is the way we connect docker contain
 .PHONY: build push shell run start stop rm release
 
 build:
-	docker build --build-arg CONTAINER_DIR=$(CONTAINER_DIR) --build-arg PUBLIC_DIR=$(PUBLIC_DIR) -t $(IMG_NAME):$(VERSION) $(DEV_DIR)
+	docker build -t $(IMG_NAME):$(VERSION) $(DEV_DIR)
 
 runDev:
 	docker run -d --name $(CONTAINER_NAME) -p $(PORT_EXPOSE):$(PORT_INTERNAL) --link $(LINK_TO_CONTAINER):$(LINK_TO_CONTAINER) -v $(DEV_DIR)/public:$(CONTAINER_DIR)/$(PUBLIC_DIR) $(IMG_NAME):$(VERSION)
@@ -60,4 +60,3 @@ push:
 run: runDev
 
 default: runDev
-	
