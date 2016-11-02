@@ -22,8 +22,8 @@ runProd:
 	docker run -d --name $(CONTAINER_NAME) -p $(PORT_EXPOSE):$(PORT_INTERNAL) --link $(LINK_TO_CONTAINER):$(LINK_TO_CONTAINER) $(IMG_NAME):$(VERSION)
 
 stop:
-	docker stop $(CONTAINER_NAME)
-	docker rm $(CONTAINER_NAME)
+	-docker stop $(CONTAINER_NAME)
+	-docker rm $(CONTAINER_NAME)
 
 start:
 	docker start $(CONTAINER_NAME)
